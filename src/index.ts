@@ -8,6 +8,8 @@ export = (app: Probot) => {
 
         const params = context.payload.repository
 
+
+
         // @ts-ignore
         const fileSHA = (await context.octokit.repos.getContent({
             owner: params.owner.name!!,
@@ -29,9 +31,12 @@ export = (app: Probot) => {
 
         const versionYAML = stringify(versionData)
 
+        context.log.info(path, params, versionData, versionYAML)
+
         await context.octokit.rest.repos.createOrUpdateFileContents({
             owner: params.owner.name!!,
             repo: params.name!!,
+            branch: merged_at!!,
             path,
             message: `chore(versioning): Versioned (${title}, by ${merged_by}, at ${updated_at}`,
             content: btoa(versionYAML),
