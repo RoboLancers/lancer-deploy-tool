@@ -1,0 +1,9 @@
+name: "Lancer Deploy Tool"
+description: "A GitHub app to automagically update code version and comp usability for FRC deploys"
+author: "Rafayel Amirkhanyan"
+runs:
+  using: "node16"
+  main: "dist/index.js"
+branding:
+  icon: "arrow-right"
+  color: "green"
